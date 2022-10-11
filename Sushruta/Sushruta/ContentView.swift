@@ -1,0 +1,262 @@
+//
+//  ContentView.swift
+//  Sushruta
+//
+//  Created by 莊翔安 on 2022/9/27.
+//
+
+import SwiftUI
+
+
+struct ContentView: View {
+    
+    @State var isPlaying = false
+    @State var showPhaseDetail = false
+    @State var showFinalReport = false
+    
+    
+    var body: some View {
+
+        VStack(spacing:0){
+
+        
+            Text("Sushruta")
+                .font(.largeTitle)
+                .foregroundColor(.accentColor)
+            
+            Divider()
+                .padding(.top,10)
+
+
+            
+
+            HStack{
+                
+                // video
+                VStack{
+                    
+                    // video information
+                    HStack{
+                        Text("48033C-20220909")
+                            .font(.system(size: 24))
+                        Spacer()
+                        Text("Processing Time: 21mins58secs")
+                    }
+                    .frame(width: 500)
+                    .offset(y: /*@START_MENU_TOKEN@*/14.0/*@END_MENU_TOKEN@*/)
+                    
+                    
+                    
+                    Image("videosample")
+                        .resizable()
+                        .frame(width: 500, height: 350)
+                        .cornerRadius(10.0)
+                    
+                    
+                    // Start and Pause Button
+                    Button(action: {
+                        isPlaying.toggle()
+                        if isPlaying {
+//                                        player.pause()
+                        } else {
+//                                        player.play()
+                        }
+                    }) {
+                        Image(systemName: isPlaying ? "pause" : "play.fill")
+                            .padding(3.0)
+                            .border(Color.accentColor, width: 2)
+                    }
+                    .frame(width: 0.0, height: 0.0)
+                    
+                    .offset(x:220, y:-44)
+                    .font(.system(size:34))
+                    
+                    
+                    
+//                                VideoPlayer(player: player)
+                }
+                
+                
+                // phase
+                List {
+                  Section(header: Text("Phase")) {
+                      ForEach(0..<6) { index in
+                          HStack {
+                              Button {
+                                  print("pressing Button\(index+1)")
+                                  self.showPhaseDetail.toggle()
+                              } label: {
+                                  Text("Phase-\(index+1)")
+                                      .multilineTextAlignment(.leading)
+                                      .padding(7)
+                              }
+                              .sheet(isPresented: $showPhaseDetail) {
+                                  DetailView()
+                              }
+
+                          }
+
+                        }
+                  }
+                }
+                .listStyle(.plain)
+                .listRowSeparatorTint(.purple)
+                .offset(y:-5)
+        
+
+                
+                // instruction and final report
+                VStack{
+                    // instruction
+                    GroupBox(label:
+                                HStack{
+                        Text("Model Message")
+                            .fontWeight(.bold)
+                    }){
+                        Divider().padding(.vertical, 10)
+                        
+                        HStack{
+                            VStack {
+                                Text("This is Message.")
+                                Text("This is Message.")
+                                Text("This is Message.")
+                                Text("This is Message.")
+                                Text("This is Message.")
+                                Text("This is Message.")
+                                Text("This is Message.")
+                                Text("This is Message.")
+                                Text("This is Message.")
+                                Text("This is Message.")
+                            }
+                            Spacer()
+                            
+                        }
+                    }
+                    .frame(width:300, height:300)
+                    // two button
+                    HStack{
+                        
+                        Button {
+                            print("pressing history instruction")
+                        } label: {
+                            Text("History Message")
+                                .padding(3)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        
+                        
+//                        Button {
+//                            print("pressing final report")
+//                            self.showFinalReport.toggle()
+//                        } label: {
+//                            Text("Final Report")
+//                                .padding(.horizontal, 15.0)
+//                                .padding(3)
+//
+//                        }
+//                        .buttonStyle(.borderedProminent)
+//                        .sheet(isPresented: $showFinalReport) {
+//                            FinalReportView()
+//                        }
+                        
+                        NavigationLink{
+                            FinalReportView()
+                        } label:{
+                            Text("Final Report")
+                                .padding(.horizontal, 15.0)
+                                .padding(.vertical,10)
+                                .foregroundColor(.white)
+                                .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color("AccentColor")/*@END_MENU_TOKEN@*/)
+                                .cornerRadius(8)
+                            
+                                
+                        }
+
+                    }
+                    .frame(height: 50.0)
+                }
+                
+                
+            }
+            .padding(5.0)
+
+            
+            
+            HStack{
+                
+                // gannt graph
+                VStack{
+                    
+                    HStack {
+                        Text("Gantt Graph")
+                            .font(.headline)
+                            .padding(0.0)
+                            
+                        Spacer()
+                    }
+                    HStack {
+                        Image("ganntsample")
+                            .resizable()
+                            .frame(width: 550, height: 300)
+                            .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+                        Spacer()
+                    }
+                    .offset(y:-10)
+                        
+                }
+                Spacer()
+                // instrument displacement ratio
+                VStack{
+                    HStack {
+                        Text("Instrument Displacemetn Ratio")
+                            .font(.headline)
+                        Spacer()
+                    }
+                    HStack {
+                        Image("instrumentdisplacesample")
+                            .resizable()
+                            .frame(width: 550, height: 300)
+                            .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+                        Spacer()
+                    }
+                    .offset(y:-10)
+                        
+                }
+                
+            }
+            .padding(5.0)
+            .padding(.bottom, 5.0)
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+
+
+
+
+
+//back-up
+
+//struct DetailView: View{
+//
+//    @Environment(\.presentationMode) var presentationMode
+//
+//    var body: some View{
+//
+//        NavigationView{
+//
+//            Text("This is the detail for this phase.")
+//                .navigationBarItems(trailing: Button(action: {
+//                    self.presentationMode.wrappedValue.dismiss()
+//                }, label: {
+//                    Image(systemName: "chevron.down.circle.fill")
+//                        .foregroundColor(.accentColor)
+//                }))
+//        }
+//    }
+//}
