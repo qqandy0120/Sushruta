@@ -9,6 +9,7 @@ import SwiftUI
 struct CView: View {
     var body: some View {
         Text("fdjkl")
+        Text("fdjkl")
     }
 }
 
