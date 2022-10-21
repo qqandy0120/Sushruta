@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D108728728FF38510022658E /* HistoryMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D108728628FF38510022658E /* HistoryMessageView.swift */; };
 		D13485B128E32B110037DD41 /* SushrutaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13485B028E32B110037DD41 /* SushrutaApp.swift */; };
-		D13485B328E32B110037DD41 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13485B228E32B110037DD41 /* ContentView.swift */; };
+		D13485B328E32B110037DD41 /* ContentViewCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13485B228E32B110037DD41 /* ContentViewCamera.swift */; };
 		D13485B528E32B120037DD41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D13485B428E32B120037DD41 /* Assets.xcassets */; };
 		D13485B828E32B120037DD41 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D13485B728E32B120037DD41 /* Preview Assets.xcassets */; };
 		D13485C228E32B120037DD41 /* SushrutaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13485C128E32B120037DD41 /* SushrutaTests.swift */; };
@@ -38,9 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D108728628FF38510022658E /* HistoryMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryMessageView.swift; sourceTree = "<group>"; };
 		D13485AD28E32B110037DD41 /* Sushruta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sushruta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D13485B028E32B110037DD41 /* SushrutaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SushrutaApp.swift; sourceTree = "<group>"; };
-		D13485B228E32B110037DD41 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D13485B228E32B110037DD41 /* ContentViewCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewCamera.swift; sourceTree = "<group>"; };
 		D13485B428E32B120037DD41 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D13485B728E32B120037DD41 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D13485BD28E32B120037DD41 /* SushrutaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SushrutaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,11 +105,12 @@
 			isa = PBXGroup;
 			children = (
 				D13485B028E32B110037DD41 /* SushrutaApp.swift */,
-				D13485B228E32B110037DD41 /* ContentView.swift */,
+				D13485B228E32B110037DD41 /* ContentViewCamera.swift */,
 				D1B0327E28ECD1650054DCF3 /* DetailView.swift */,
 				D1B0328028EDAADF0054DCF3 /* FinalReportView.swift */,
 				D1B0328228EDB30E0054DCF3 /* testing.swift */,
 				D1C0F6A428F416DC008373DD /* FrontPageView.swift */,
+				D108728628FF38510022658E /* HistoryMessageView.swift */,
 				D13485B428E32B120037DD41 /* Assets.xcassets */,
 				D13485B628E32B120037DD41 /* Preview Content */,
 			);
@@ -269,10 +272,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D13485B328E32B110037DD41 /* ContentView.swift in Sources */,
+				D13485B328E32B110037DD41 /* ContentViewCamera.swift in Sources */,
 				D1B0327F28ECD1650054DCF3 /* DetailView.swift in Sources */,
 				D1B0328128EDAADF0054DCF3 /* FinalReportView.swift in Sources */,
 				D13485B128E32B110037DD41 /* SushrutaApp.swift in Sources */,
+				D108728728FF38510022658E /* HistoryMessageView.swift in Sources */,
 				D1B0328328EDB30E0054DCF3 /* testing.swift in Sources */,
 				D1C0F6A528F416DC008373DD /* FrontPageView.swift in Sources */,
 			);

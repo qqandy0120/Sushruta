@@ -108,8 +108,8 @@ struct FinalReportView: View {
                         HStack {
                             Image("\(instruments[selectedIndex].MovementImg)")
                                 .resizable()
-                                .frame(width: imgWidth, height: imgHeight)
-                                .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+                            //                                .frame(width: imgWidth, height: imgHeight)
+                                .cornerRadius(10.0)
                             Spacer()
                         }
                         .offset(y:-10)
@@ -123,12 +123,11 @@ struct FinalReportView: View {
                                     Text("Choose an instrument")
                                 }
                                 .pickerStyle(.segmented)
-    //                Text("要是能重來，我要選\(roles[selectedIndex])")
-    //                到時候用同樣方法切換圖片？？
                     
                     
                 }  // Vstack end
                 
+                Spacer()
                 Spacer()
                 
                 VStack{
@@ -147,7 +146,7 @@ struct FinalReportView: View {
                         HStack {
                             Image("ganntsample")
                                 .resizable()
-                                .frame(width: imgWidth, height: imgHeight)
+//                                .frame(width: imgWidth, height: imgHeight)
                                 .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
                             Spacer()
                         }
@@ -170,8 +169,8 @@ struct FinalReportView: View {
                         HStack {
                             Image("ganntsample")
                                 .resizable()
-                                .frame(width: imgWidth, height: imgHeight)
-                                .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+                            //                                .frame(width: imgWidth, height: imgHeight)
+                                .cornerRadius(10.0)
                             Spacer()
                         }
                         .offset(y:-10)

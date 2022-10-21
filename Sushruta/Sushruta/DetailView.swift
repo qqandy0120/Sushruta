@@ -23,7 +23,7 @@ struct DetailView: View{
                         .fontWeight(.black)
                         .padding(10.0)
                         .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 3)
-                        .dynamicTypeSize(/*@START_MENU_TOKEN@*/.xxxLarge/*@END_MENU_TOKEN@*/)
+                        .dynamicTypeSize(.xxxLarge)
                         .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color(red: 0.712, green: 0.783, blue: 0.756)/*@END_MENU_TOKEN@*/)
                     
                     Spacer()

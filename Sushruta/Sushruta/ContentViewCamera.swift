@@ -13,7 +13,8 @@ struct ContentView: View {
     @State var isPlaying = false
     @State var showPhaseDetail = false
     @State var showFinalReport = false
-    
+    @State var showHistoryMessage = false
+    @State var finish = true
     
     var body: some View {
 
@@ -32,7 +33,8 @@ struct ContentView: View {
 
             HStack{
                 
-                // video
+        
+                // camera
                 VStack{
                     
                     // video information
@@ -138,42 +140,46 @@ struct ContentView: View {
                         
                         Button {
                             print("pressing history instruction")
+                            self.showHistoryMessage.toggle()
                         } label: {
                             Text("History Message")
                                 .padding(3)
                         }
+                        .sheet(isPresented: $showHistoryMessage, content: {
+                            HistoryMessageView()
+                        })
                         .buttonStyle(.borderedProminent)
                         
-                        
-//                        Button {
-//                            print("pressing final report")
-//                            self.showFinalReport.toggle()
-//                        } label: {
-//                            Text("Final Report")
-//                                .padding(.horizontal, 15.0)
-//                                .padding(3)
-//
-//                        }
-//                        .buttonStyle(.borderedProminent)
-//                        .sheet(isPresented: $showFinalReport) {
-//                            FinalReportView()
-//                        }
-                        
-                        NavigationLink{
-                            FinalReportView()
-                        } label:{
+            
+                        if finish {
+                            NavigationLink{
+                                FinalReportView()
+                            } label:{
+                                Text("Final Report")
+                                    .padding(.horizontal, 15.0)
+                                    .padding(.vertical,10)
+                                    .foregroundColor(.white)
+                                    .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color("AccentColor")/*@END_MENU_TOKEN@*/)
+                                    .cornerRadius(8)
+                                
+                                    
+                            }
+                        } else{
                             Text("Final Report")
                                 .padding(.horizontal, 15.0)
                                 .padding(.vertical,10)
                                 .foregroundColor(.white)
-                                .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color("AccentColor")/*@END_MENU_TOKEN@*/)
+                                .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color(hue: 1.0, saturation: 0.0, brightness: 0.834)/*@END_MENU_TOKEN@*/)
                                 .cornerRadius(8)
-                            
-                                
+
+
                         }
+                        
+                        
 
                     }
-                    .frame(height: 50.0)
+                    .frame(width: 300, height: 50.0)
+                    
                 }
                 
                 
@@ -197,8 +203,8 @@ struct ContentView: View {
                     HStack {
                         Image("ganntsample")
                             .resizable()
-                            .frame(width: 550, height: 300)
-                            .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+//                            .frame(width: 550, height: 300)
+                            .cornerRadius(10.0)
                         Spacer()
                     }
                     .offset(y:-10)
@@ -215,7 +221,7 @@ struct ContentView: View {
                     HStack {
                         Image("instrumentdisplacesample")
                             .resizable()
-                            .frame(width: 550, height: 300)
+//                            .frame(width: 550, height: 300)
                             .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
                         Spacer()
                     }
