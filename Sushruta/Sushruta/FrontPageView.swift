@@ -7,22 +7,23 @@
 
 import SwiftUI
 
+
+
 struct FrontPageView: View {
     @Environment(\.presentationMode) var presentationMode
     @State var showHistoryData = false
     @State var shouldPresentActionScheet = false
     @State var goContentViewCamera = false
     @State var goContentViewVideo = false
-    
     var body: some View {
         NavigationView {
             
             //switching page
             if goContentViewVideo{
-                NavigationLink("", destination: ContentView(), isActive: $goContentViewVideo)
+                NavigationLink("", destination: ContentViewVideo(), isActive: $goContentViewVideo)
             }
             if goContentViewCamera{
-                NavigationLink("", destination: ContentView(), isActive: $goContentViewCamera)
+                NavigationLink("", destination: ContentViewCamera(), isActive: $goContentViewCamera)
             }
             
             

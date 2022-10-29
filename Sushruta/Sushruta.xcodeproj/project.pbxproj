@@ -15,6 +15,7 @@
 		D13485C228E32B120037DD41 /* SushrutaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13485C128E32B120037DD41 /* SushrutaTests.swift */; };
 		D13485CC28E32B120037DD41 /* SushrutaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13485CB28E32B120037DD41 /* SushrutaUITests.swift */; };
 		D13485CE28E32B120037DD41 /* SushrutaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13485CD28E32B120037DD41 /* SushrutaUITestsLaunchTests.swift */; };
+		D1A1F034290DB29B00B4E70B /* ContentViewVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A1F033290DB29B00B4E70B /* ContentViewVideo.swift */; };
 		D1B0327F28ECD1650054DCF3 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B0327E28ECD1650054DCF3 /* DetailView.swift */; };
 		D1B0328128EDAADF0054DCF3 /* FinalReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B0328028EDAADF0054DCF3 /* FinalReportView.swift */; };
 		D1B0328328EDB30E0054DCF3 /* testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B0328228EDB30E0054DCF3 /* testing.swift */; };
@@ -50,6 +51,7 @@
 		D13485C728E32B120037DD41 /* SushrutaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SushrutaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D13485CB28E32B120037DD41 /* SushrutaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SushrutaUITests.swift; sourceTree = "<group>"; };
 		D13485CD28E32B120037DD41 /* SushrutaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SushrutaUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D1A1F033290DB29B00B4E70B /* ContentViewVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewVideo.swift; sourceTree = "<group>"; };
 		D1B0327E28ECD1650054DCF3 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		D1B0328028EDAADF0054DCF3 /* FinalReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalReportView.swift; sourceTree = "<group>"; };
 		D1B0328228EDB30E0054DCF3 /* testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testing.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			children = (
 				D13485B028E32B110037DD41 /* SushrutaApp.swift */,
 				D13485B228E32B110037DD41 /* ContentViewCamera.swift */,
+				D1A1F033290DB29B00B4E70B /* ContentViewVideo.swift */,
 				D1B0327E28ECD1650054DCF3 /* DetailView.swift */,
 				D1B0328028EDAADF0054DCF3 /* FinalReportView.swift */,
 				D1B0328228EDB30E0054DCF3 /* testing.swift */,
@@ -274,6 +277,7 @@
 			files = (
 				D13485B328E32B110037DD41 /* ContentViewCamera.swift in Sources */,
 				D1B0327F28ECD1650054DCF3 /* DetailView.swift in Sources */,
+				D1A1F034290DB29B00B4E70B /* ContentViewVideo.swift in Sources */,
 				D1B0328128EDAADF0054DCF3 /* FinalReportView.swift in Sources */,
 				D13485B128E32B110037DD41 /* SushrutaApp.swift in Sources */,
 				D108728728FF38510022658E /* HistoryMessageView.swift in Sources */,
@@ -445,7 +449,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -475,7 +479,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

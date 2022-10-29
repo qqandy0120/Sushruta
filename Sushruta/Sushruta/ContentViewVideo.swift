@@ -9,7 +9,9 @@ import SwiftUI
 import PhotosUI
 
 
-struct ContentViewCamera: View {
+struct ContentViewVideo: View {
+    
+    @State var Start = false
     
     @State var isPlaying = false
     @State var showPhaseDetail = false
@@ -17,6 +19,7 @@ struct ContentViewCamera: View {
     @State var showHistoryMessage = false
     @State var finish = true
     @State private var selectedItem: PhotosPickerItem?
+    @State private var selectedPhotoData: Data?
 
     
     var body: some View {
@@ -34,81 +37,110 @@ struct ContentViewCamera: View {
 
             HStack{
                 
-        
+                
                 // camera
                 VStack{
-                    
-                    // video information
-                    HStack{
-                        Text("48033C-20220909")
-                            .font(.system(size: 24))
-                        Spacer()
-                        Text("Processing Time: 21mins58secs")
-                    }
-                    .frame(width: 500)
-                    .offset(y: /*@START_MENU_TOKEN@*/14.0/*@END_MENU_TOKEN@*/)
-                    
-                    
-                    
-                    Image("videosample")
-                        .resizable()
-                        .frame(width: 500, height: 350)
-                        .cornerRadius(10.0)
+                    if let selectedPhotoData,
+                       let image = UIImage(data: selectedPhotoData) {
                         
+                        Image(uiImage: image)
+                            .resizable()
+                        
+                    }
+                    
+                    HStack{
+                        
+                        //check button
+                        if selectedItem != nil{
+                            Button {
+                                print("pressing Check")
+                                Start.toggle()
+                            } label: {
+                                Text("Start !")
+                                    .multilineTextAlignment(.leading)
+                                    .padding(.horizontal,7)
+                            }
+                            .buttonStyle(.borderedProminent)
+                        }
+                        
+                        PhotosPicker(selection: $selectedItem, matching: .any(of: [.images, .videos])) {
+                            if selectedItem == nil{
+                                Label("Select a video", systemImage: "video")
+                                    .padding(10)
+                                    .border(Color("AccentColor"), width: 2)
+                                    .cornerRadius(5)
+                            }
+                            else{
+                                Text("Select another video")
+                            }
+                        }
+                        
+                        .onChange(of: selectedItem) { newItem in
+                            Task {
+                                if let data = try? await newItem?.loadTransferable(type: Data.self) {
+                                    selectedPhotoData = data
+                                }
+                            }
+                        }
+                    }
                     
                     
                     
                      // Start and Pause Button
-                    Button(action: {
-                        isPlaying.toggle()
-                        if isPlaying {
-//                                        player.pause()
-                        } else {
-//                                        player.play()
-                        }
-                    }) {
-                        Image(systemName: isPlaying ? "pause" : "play.fill")
-                            .padding(3.0)
-                            .border(Color.accentColor, width: 2)
-                    }
-                    .frame(width: 0.0, height: 0.0)
-
-                    .offset(x:220, y:-44)
-                    .font(.system(size:34))
+//                    Button(action: {
+//                        isPlaying.toggle()
+//                        if isPlaying {
+////                                        player.pause()
+//                        } else {
+////                                        player.play()
+//                        }
+//                    }) {
+//                        Image(systemName: isPlaying ? "pause" : "play.fill")
+//                            .padding(3.0)
+//                            .border(Color.accentColor, width: 2)
+//                    }
+//                    .frame(width: 0.0, height: 0.0)
+//                    .font(.system(size:34))
                     
                     
                     
-//                                VideoPlayer(player: player)
+                    //                                VideoPlayer(player: player)
                 }
+                .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 400)
+                
+                
                 
                 
                 // phase
-                List {
-                  Section(header: Text("Phase")) {
-                      ForEach(0..<6) { index in
-                          HStack {
-                              Button {
-                                  print("pressing Button\(index+1)")
-                                  self.showPhaseDetail.toggle()
-                              } label: {
-                                  Text("Phase-\(index+1)")
-                                      .multilineTextAlignment(.leading)
-                                      .padding(7)
-                              }
-                              .sheet(isPresented: $showPhaseDetail) {
-                                  DetailView()
-                              }
-
-                          }
-
+                
+                VStack {
+                    List {
+                        Section(header: Text("Phase")) {
+                            ForEach(0..<6) { index in
+                                HStack {
+                                    Button {
+                                        print("pressing Button\(index+1)")
+                                        self.showPhaseDetail.toggle()
+                                    } label: {
+                                        Text("Phase-\(index+1)")
+                                            .multilineTextAlignment(.leading)
+                                            .padding(7)
+                                    }
+                                    .sheet(isPresented: $showPhaseDetail) {
+                                        DetailView()
+                                    }
+                                    
+                                }
+                                
+                            }
                         }
-                  }
-                }
-                .listStyle(.plain)
-                .listRowSeparatorTint(.purple)
+                    }
+                    .listStyle(.plain)
+                    .listRowSeparatorTint(.purple)
                 .offset(y:-5)
-        
-
+                }
+                
+                
                 
                 // instruction and final report
                 VStack{
@@ -153,7 +185,7 @@ struct ContentViewCamera: View {
                         })
                         .buttonStyle(.borderedProminent)
                         
-            
+                        
                         if finish {
                             NavigationLink{
                                 FinalReportView()
@@ -162,24 +194,24 @@ struct ContentViewCamera: View {
                                     .padding(.horizontal, 15.0)
                                     .padding(.vertical,10)
                                     .foregroundColor(.white)
-                                    .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color("AccentColor")/*@END_MENU_TOKEN@*/)
+                                    .background(Color("AccentColor"))
                                     .cornerRadius(8)
                                 
-                                    
+                                
                             }
                         } else{
                             Text("Final Report")
                                 .padding(.horizontal, 15.0)
                                 .padding(.vertical,10)
                                 .foregroundColor(.white)
-                                .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color(hue: 1.0, saturation: 0.0, brightness: 0.834)/*@END_MENU_TOKEN@*/)
+                                .background(Color(hue: 1.0, saturation: 0.0, brightness: 0.834))
                                 .cornerRadius(8)
-
-
+                            
+                            
                         }
                         
                         
-
+                        
                     }
                     .frame(width: 300, height: 50.0)
                     
@@ -188,6 +220,7 @@ struct ContentViewCamera: View {
                 
             }
             .padding(5.0)
+            
 
             
             
@@ -239,9 +272,9 @@ struct ContentViewCamera: View {
     }
 }
 
-struct ContentViewCamera_Previews: PreviewProvider {
+struct ContentViewVideo_Previews: PreviewProvider {
     static var previews: some View {
-        ContentViewCamera()
+        ContentViewVideo()
     }
 }
 
