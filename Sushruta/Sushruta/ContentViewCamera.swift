@@ -6,20 +6,23 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 
-struct ContentView: View {
+struct ContentViewCamera: View {
+    
     @State var isPlaying = false
     @State var showPhaseDetail = false
     @State var showFinalReport = false
-    @State var start_time = DispatchTime.now()
+    @State var showHistoryMessage = false
+    @State var finish = true
+    @State private var selectedItem: PhotosPickerItem?
     @StateObject private var model = VisionObjectClassificationFrameHandler()
+
     
     var body: some View {
 
         VStack(spacing:0){
-
-        
             Text("Sushruta")
                 .font(.largeTitle)
                 .foregroundColor(.accentColor)
@@ -32,7 +35,8 @@ struct ContentView: View {
 
             HStack{
                 
-                // video
+        
+                // camera
                 VStack{
                     
                     // video information
@@ -49,14 +53,15 @@ struct ContentView: View {
                     FrameView(
                         image: model.frame,
                         bbox: model.bbox
-                    ).ignoresSafeArea()
+                    ).ignoresSafeArea().resizable()
 //                    Image("videosample")
 //                        .resizable()
 //                        .frame(width: 500, height: 350)
 //                        .cornerRadius(10.0)
                     
                     
-                    // Start and Pause Button
+                    
+                     // Start and Pause Button
                     Button(action: {
                         isPlaying.toggle()
                         if isPlaying {
@@ -70,7 +75,7 @@ struct ContentView: View {
                             .border(Color.accentColor, width: 2)
                     }
                     .frame(width: 0.0, height: 0.0)
-                    
+
                     .offset(x:220, y:-44)
                     .font(.system(size:34))
                     
@@ -131,41 +136,46 @@ struct ContentView: View {
                         
                         Button {
                             print("pressing history instruction")
+                            self.showHistoryMessage.toggle()
                         } label: {
                             Text("History Message")
                                 .padding(3)
                         }
+                        .sheet(isPresented: $showHistoryMessage, content: {
+                            HistoryMessageView()
+                        })
+                        .buttonStyle(.borderedProminent)
                         
-                        
-//                        Button {
-//                            print("pressing final report")
-//                            self.showFinalReport.toggle()
-//                        } label: {
-//                            Text("Final Report")
-//                                .padding(.horizontal, 15.0)
-//                                .padding(3)
-//
-//                        }
-//                        .buttonStyle(.borderedProminent)
-//                        .sheet(isPresented: $showFinalReport) {
-//                            FinalReportView()
-//                        }
-                        
-                        NavigationLink{
-                            FinalReportView()
-                        } label:{
+            
+                        if finish {
+                            NavigationLink{
+                                FinalReportView()
+                            } label:{
+                                Text("Final Report")
+                                    .padding(.horizontal, 15.0)
+                                    .padding(.vertical,10)
+                                    .foregroundColor(.white)
+                                    .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color("AccentColor")/*@END_MENU_TOKEN@*/)
+                                    .cornerRadius(8)
+                                
+                                    
+                            }
+                        } else{
                             Text("Final Report")
                                 .padding(.horizontal, 15.0)
                                 .padding(.vertical,10)
                                 .foregroundColor(.white)
-                                .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color("AccentColor")/*@END_MENU_TOKEN@*/)
+                                .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color(hue: 1.0, saturation: 0.0, brightness: 0.834)/*@END_MENU_TOKEN@*/)
                                 .cornerRadius(8)
-                            
-                                
+
+
                         }
+                        
+                        
 
                     }
-                    .frame(height: 50.0)
+                    .frame(width: 300, height: 50.0)
+                    
                 }
                 
                 
@@ -189,8 +199,8 @@ struct ContentView: View {
                     HStack {
                         Image("ganntsample")
                             .resizable()
-                            .frame(width: 550, height: 300)
-                            .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+//                            .frame(width: 550, height: 300)
+                            .cornerRadius(10.0)
                         Spacer()
                     }
                     .offset(y:-10)
@@ -207,7 +217,7 @@ struct ContentView: View {
                     HStack {
                         Image("instrumentdisplacesample")
                             .resizable()
-                            .frame(width: 550, height: 300)
+//                            .frame(width: 550, height: 300)
                             .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
                         Spacer()
                     }
@@ -222,9 +232,9 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct ContentViewCamera_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentViewCamera()
     }
 }
 
