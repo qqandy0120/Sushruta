@@ -23,7 +23,6 @@ struct DetailView: View{
                         .fontWeight(.black)
                         .padding(10.0)
                         .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 3)
-                        .dynamicTypeSize(/*@START_MENU_TOKEN@*/.xxxLarge/*@END_MENU_TOKEN@*/)
                         .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color(red: 0.712, green: 0.783, blue: 0.756)/*@END_MENU_TOKEN@*/)
                     
                     Spacer()
@@ -32,13 +31,9 @@ struct DetailView: View{
                         Text("Status: Finished")
                             .font(.title)
                             .padding(2.0)
-                            .dynamicTypeSize(.xxLarge)
                         Text("Time Consume: 5 mins 11 secs")
-                            .dynamicTypeSize(.xLarge)
                         Text("Start Time: 0 mins 0 secs")
-                            .dynamicTypeSize(.xLarge)
                         Text("End Time: 5 min 11 secs")
-                            .dynamicTypeSize(.xLarge)
                     }
                     .offset(x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 20)
                     Spacer()
@@ -56,7 +51,6 @@ struct DetailView: View{
                     Text("Final Gannt Graph")
                         .font(.subheadline)
                         .fontWeight(.bold)
-                        .dynamicTypeSize(/*@START_MENU_TOKEN@*/.xLarge/*@END_MENU_TOKEN@*/)
                         .offset(x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: /*@START_MENU_TOKEN@*/8.0/*@END_MENU_TOKEN@*/)
                     Image("PhaseDetailGannt")
                         .resizable()
@@ -76,7 +70,6 @@ struct DetailView: View{
                     Text("Tool Usage Distribution")
                         .font(.subheadline)
                         .fontWeight(.bold)
-                        .dynamicTypeSize(/*@START_MENU_TOKEN@*/.xLarge/*@END_MENU_TOKEN@*/)
                         .offset(x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: /*@START_MENU_TOKEN@*/8.0/*@END_MENU_TOKEN@*/)
                         
                     Image("PhaseDetailDistribution")

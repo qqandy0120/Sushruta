@@ -9,11 +9,11 @@ import SwiftUI
 
 
 struct ContentView: View {
-    
     @State var isPlaying = false
     @State var showPhaseDetail = false
     @State var showFinalReport = false
-    
+    @State var start_time = DispatchTime.now()
+    @StateObject private var model = VisionObjectClassificationFrameHandler()
     
     var body: some View {
 
@@ -46,20 +46,23 @@ struct ContentView: View {
                     .offset(y: /*@START_MENU_TOKEN@*/14.0/*@END_MENU_TOKEN@*/)
                     
                     
-                    
-                    Image("videosample")
-                        .resizable()
-                        .frame(width: 500, height: 350)
-                        .cornerRadius(10.0)
+                    FrameView(
+                        image: model.frame,
+                        bbox: model.bbox
+                    ).ignoresSafeArea()
+//                    Image("videosample")
+//                        .resizable()
+//                        .frame(width: 500, height: 350)
+//                        .cornerRadius(10.0)
                     
                     
                     // Start and Pause Button
                     Button(action: {
                         isPlaying.toggle()
                         if isPlaying {
-//                                        player.pause()
+                            model.startRunning()
                         } else {
-//                                        player.play()
+                            model.endRunning()
                         }
                     }) {
                         Image(systemName: isPlaying ? "pause" : "play.fill")
@@ -71,9 +74,6 @@ struct ContentView: View {
                     .offset(x:220, y:-44)
                     .font(.system(size:34))
                     
-                    
-                    
-//                                VideoPlayer(player: player)
                 }
                 
                 
@@ -100,7 +100,6 @@ struct ContentView: View {
                   }
                 }
                 .listStyle(.plain)
-                .listRowSeparatorTint(.purple)
                 .offset(y:-5)
         
 
@@ -117,16 +116,10 @@ struct ContentView: View {
                         
                         HStack{
                             VStack {
-                                Text("This is Message.")
-                                Text("This is Message.")
-                                Text("This is Message.")
-                                Text("This is Message.")
-                                Text("This is Message.")
-                                Text("This is Message.")
-                                Text("This is Message.")
-                                Text("This is Message.")
-                                Text("This is Message.")
-                                Text("This is Message.")
+                                Text("Classification: ")
+                                Text(model.label)
+                                Text("Detection: ")
+                                Text(model.detectionlabel)
                             }
                             Spacer()
                             
@@ -142,7 +135,6 @@ struct ContentView: View {
                             Text("History Message")
                                 .padding(3)
                         }
-                        .buttonStyle(.borderedProminent)
                         
                         
 //                        Button {
