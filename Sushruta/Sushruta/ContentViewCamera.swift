@@ -53,7 +53,7 @@ struct ContentViewCamera: View {
                     FrameView(
                         image: model.frame,
                         bbox: model.bbox
-                    ).ignoresSafeArea().resizable()
+                    ).ignoresSafeArea()
 //                    Image("videosample")
 //                        .resizable()
 //                        .frame(width: 500, height: 350)

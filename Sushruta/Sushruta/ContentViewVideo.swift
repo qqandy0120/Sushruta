@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import AVKit
 
 
 struct ContentViewVideo: View {
@@ -18,9 +19,9 @@ struct ContentViewVideo: View {
     @State var showFinalReport = false
     @State var showHistoryMessage = false
     @State var finish = true
-    @State private var selectedItem: PhotosPickerItem?
+    @State private var selectedItem: [PhotosPickerItem] = []
     @State private var selectedPhotoData: Data?
-
+    @State var player : AVPlayer?
     
     var body: some View {
 
@@ -40,51 +41,61 @@ struct ContentViewVideo: View {
                 
                 // camera
                 VStack{
-                    if let selectedPhotoData,
-                       let image = UIImage(data: selectedPhotoData) {
-                        
-                        Image(uiImage: image)
-                            .resizable()
-                        
-                    }
-                    
-                    HStack{
-                        
-                        //check button
-                        if selectedItem != nil{
-                            Button {
-                                print("pressing Check")
-                                Start.toggle()
-                            } label: {
-                                Text("Start !")
-                                    .multilineTextAlignment(.leading)
-                                    .padding(.horizontal,7)
+                    if let player{
+                        VideoPlayer(player: player).frame(width: 500, height: 300, alignment: .center)
+                    } else{
+                        HStack{
+                            
+                            //check button
+                            if player != nil{
+                                Button {
+                                    print("pressing Check")
+                                    Start.toggle()
+                                } label: {
+                                    Text("Start !")
+                                        .multilineTextAlignment(.leading)
+                                        .padding(.horizontal,7)
+                                }
+                                .buttonStyle(.borderedProminent)
                             }
-                            .buttonStyle(.borderedProminent)
-                        }
-                        
-                        PhotosPicker(selection: $selectedItem, matching: .any(of: [.images, .videos])) {
-                            if selectedItem == nil{
-                                Label("Select a video", systemImage: "video")
-                                    .padding(10)
-                                    .border(Color("AccentColor"), width: 2)
-                                    .cornerRadius(5)
+                            
+                            PhotosPicker(selection: $selectedItem, matching: .any(of: [.images, .videos])) {
+                                if selectedItem == nil{
+                                    Label("Select a video", systemImage: "video")
+                                        .padding(10)
+                                        .border(Color("AccentColor"), width: 2)
+                                        .cornerRadius(5)
+                                }
+                                else{
+                                    Text("Select another video")
+                                }
                             }
-                            else{
-                                Text("Select another video")
-                            }
-                        }
-                        
-                        .onChange(of: selectedItem) { newItem in
-                            Task {
-                                if let data = try? await newItem?.loadTransferable(type: Data.self) {
-                                    selectedPhotoData = data
+                            
+                            .onChange(of: selectedItem) { newItem in
+                                Task {
+                                    guard let item = selectedItem.first else {return}
+                                    item.loadTransferable(type: Movie.self){
+                                        result in
+                                        switch result{
+                                        case .success(let movie):
+                                            if let movie = movie {
+                                                player = AVPlayer(url: movie.url)
+                                            } else {
+                                                print("movie is nil")
+                                            }
+                                        case .failure(let failure):
+                                            fatalError("\(failure)")
+                                        }
+                                    }
+//                                    if let data = try? await newItem?.loadTransferable(type: Movie.self) {
+//                                        selectedPhotoData = data
+//                                        print("hello world")
+//                                        print(selectedPhotoData)
+//                                    }
                                 }
                             }
                         }
                     }
-                    
-                    
                     
                      // Start and Pause Button
 //                    Button(action: {
