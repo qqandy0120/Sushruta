@@ -156,7 +156,7 @@ class VisionObjectClassificationFrameHandler : FrameHandler {
                 continue
             }
             self.toolItems.append(
-                GanttChartViewItem(label: "New", row: index,
+                GanttChartViewItem(row: index,
                                    start: date(self.date2Add),
                                    finish: date(self.date2Add + 1)))
         }

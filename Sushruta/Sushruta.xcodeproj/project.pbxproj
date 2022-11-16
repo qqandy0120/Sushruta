@@ -7,13 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D6CDF5F291BE0B6002D56FB /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6CDF5E291BE0B6002D56FB /* Movie.swift */; };
+		8DA41FD72924AFD5007859F5 /* SurgeryRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA41FD62924AFD5007859F5 /* SurgeryRecord.swift */; };
+		8DA41FDA2924D491007859F5 /* Ganttis.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA41FD92924D491007859F5 /* Ganttis.xcframework */; };
+		8DA41FDB2924D491007859F5 /* Ganttis.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA41FD92924D491007859F5 /* Ganttis.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8DB3C6ED28F6E1CF00CADE2F /* FrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB3C6EC28F6E1CF00CADE2F /* FrameView.swift */; };
 		8DB3C6EF28F6E1E200CADE2F /* FrameHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB3C6EE28F6E1E200CADE2F /* FrameHandler.swift */; };
 		8DB3C6F128F6E1FC00CADE2F /* VisionClassificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB3C6F028F6E1FC00CADE2F /* VisionClassificationHandler.swift */; };
 		8DB3C6F328F6E22900CADE2F /* Resnet50FP16.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 8DB3C6F228F6E22900CADE2F /* Resnet50FP16.mlmodel */; };
 		8DB3C6F728F6E9EE00CADE2F /* yolov5s.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 8DB3C6F628F6E9EE00CADE2F /* yolov5s.mlmodel */; };
+		8DEDA85E291BD21500520EC8 /* ContentViewVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEDA85D291BD21500520EC8 /* ContentViewVideo.swift */; };
+		8DEDA860291BD21A00520EC8 /* ContentViewCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEDA85F291BD21A00520EC8 /* ContentViewCamera.swift */; };
+		8DEDA862291BD25D00520EC8 /* HistoryMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEDA861291BD25D00520EC8 /* HistoryMessageView.swift */; };
+		8DEDA864291BD3A200520EC8 /* Surgery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEDA863291BD3A200520EC8 /* Surgery.swift */; };
+		8DEDA866291BD3A600520EC8 /* SurgeryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEDA865291BD3A600520EC8 /* SurgeryRow.swift */; };
 		D13485B128E32B110037DD41 /* SushrutaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13485B028E32B110037DD41 /* SushrutaApp.swift */; };
-		D13485B328E32B110037DD41 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13485B228E32B110037DD41 /* ContentView.swift */; };
 		D13485B528E32B120037DD41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D13485B428E32B120037DD41 /* Assets.xcassets */; };
 		D13485B828E32B120037DD41 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D13485B728E32B120037DD41 /* Preview Assets.xcassets */; };
 		D13485C228E32B120037DD41 /* SushrutaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13485C128E32B120037DD41 /* SushrutaTests.swift */; };
@@ -42,15 +50,36 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		8DA41FDC2924D491007859F5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8DA41FDB2924D491007859F5 /* Ganttis.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		8D6CDF5E291BE0B6002D56FB /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		8DA41FD62924AFD5007859F5 /* SurgeryRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurgeryRecord.swift; sourceTree = "<group>"; };
+		8DA41FD92924D491007859F5 /* Ganttis.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Ganttis.xcframework; path = ../../../../Downloads/Ganttis/Ganttis.xcframework; sourceTree = "<group>"; };
 		8DB3C6EC28F6E1CF00CADE2F /* FrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameView.swift; sourceTree = "<group>"; };
 		8DB3C6EE28F6E1E200CADE2F /* FrameHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameHandler.swift; sourceTree = "<group>"; };
 		8DB3C6F028F6E1FC00CADE2F /* VisionClassificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionClassificationHandler.swift; sourceTree = "<group>"; };
 		8DB3C6F228F6E22900CADE2F /* Resnet50FP16.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50FP16.mlmodel; sourceTree = SOURCE_ROOT; };
 		8DB3C6F628F6E9EE00CADE2F /* yolov5s.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = yolov5s.mlmodel; sourceTree = SOURCE_ROOT; };
+		8DEDA85D291BD21500520EC8 /* ContentViewVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewVideo.swift; sourceTree = "<group>"; };
+		8DEDA85F291BD21A00520EC8 /* ContentViewCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewCamera.swift; sourceTree = "<group>"; };
+		8DEDA861291BD25D00520EC8 /* HistoryMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryMessageView.swift; sourceTree = "<group>"; };
+		8DEDA863291BD3A200520EC8 /* Surgery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Surgery.swift; sourceTree = "<group>"; };
+		8DEDA865291BD3A600520EC8 /* SurgeryRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurgeryRow.swift; sourceTree = "<group>"; };
 		D13485AD28E32B110037DD41 /* Sushruta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sushruta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D13485B028E32B110037DD41 /* SushrutaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SushrutaApp.swift; sourceTree = "<group>"; };
-		D13485B228E32B110037DD41 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D13485B428E32B120037DD41 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D13485B728E32B120037DD41 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D13485BD28E32B120037DD41 /* SushrutaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SushrutaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DA41FDA2924D491007859F5 /* Ganttis.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +119,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8DA41FD82924D490007859F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8DA41FD92924D491007859F5 /* Ganttis.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D13485A428E32B110037DD41 = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +134,7 @@
 				D13485C028E32B120037DD41 /* SushrutaTests */,
 				D13485CA28E32B120037DD41 /* SushrutaUITests */,
 				D13485AE28E32B110037DD41 /* Products */,
+				8DA41FD82924D490007859F5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,19 +151,25 @@
 		D13485AF28E32B110037DD41 /* Sushruta */ = {
 			isa = PBXGroup;
 			children = (
+				8D6CDF5E291BE0B6002D56FB /* Movie.swift */,
 				8DB3C6F628F6E9EE00CADE2F /* yolov5s.mlmodel */,
 				8DB3C6F228F6E22900CADE2F /* Resnet50FP16.mlmodel */,
 				D13485B028E32B110037DD41 /* SushrutaApp.swift */,
-				D13485B228E32B110037DD41 /* ContentView.swift */,
 				8DB3C6EC28F6E1CF00CADE2F /* FrameView.swift */,
+				8DEDA85D291BD21500520EC8 /* ContentViewVideo.swift */,
+				8DEDA85F291BD21A00520EC8 /* ContentViewCamera.swift */,
 				8DB3C6EE28F6E1E200CADE2F /* FrameHandler.swift */,
 				8DB3C6F028F6E1FC00CADE2F /* VisionClassificationHandler.swift */,
+				8DEDA861291BD25D00520EC8 /* HistoryMessageView.swift */,
 				D1B0327E28ECD1650054DCF3 /* DetailView.swift */,
 				D1B0328028EDAADF0054DCF3 /* FinalReportView.swift */,
+				8DEDA865291BD3A600520EC8 /* SurgeryRow.swift */,
 				D1B0328228EDB30E0054DCF3 /* testing.swift */,
 				D1C0F6A428F416DC008373DD /* FrontPageView.swift */,
+				8DEDA863291BD3A200520EC8 /* Surgery.swift */,
 				D13485B428E32B120037DD41 /* Assets.xcassets */,
 				D13485B628E32B120037DD41 /* Preview Content */,
+				8DA41FD62924AFD5007859F5 /* SurgeryRecord.swift */,
 			);
 			path = Sushruta;
 			sourceTree = "<group>";
@@ -164,6 +209,7 @@
 				D13485A928E32B110037DD41 /* Sources */,
 				D13485AA28E32B110037DD41 /* Frameworks */,
 				D13485AB28E32B110037DD41 /* Resources */,
+				8DA41FDC2924D491007859F5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -284,15 +330,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D13485B328E32B110037DD41 /* ContentView.swift in Sources */,
+				8DEDA860291BD21A00520EC8 /* ContentViewCamera.swift in Sources */,
+				8DEDA866291BD3A600520EC8 /* SurgeryRow.swift in Sources */,
 				D1B0327F28ECD1650054DCF3 /* DetailView.swift in Sources */,
 				D1B0328128EDAADF0054DCF3 /* FinalReportView.swift in Sources */,
 				D13485B128E32B110037DD41 /* SushrutaApp.swift in Sources */,
 				8DB3C6F728F6E9EE00CADE2F /* yolov5s.mlmodel in Sources */,
+				8D6CDF5F291BE0B6002D56FB /* Movie.swift in Sources */,
 				D1B0328328EDB30E0054DCF3 /* testing.swift in Sources */,
+				8DEDA85E291BD21500520EC8 /* ContentViewVideo.swift in Sources */,
+				8DA41FD72924AFD5007859F5 /* SurgeryRecord.swift in Sources */,
 				8DB3C6ED28F6E1CF00CADE2F /* FrameView.swift in Sources */,
 				8DB3C6EF28F6E1E200CADE2F /* FrameHandler.swift in Sources */,
 				8DB3C6F328F6E22900CADE2F /* Resnet50FP16.mlmodel in Sources */,
+				8DEDA862291BD25D00520EC8 /* HistoryMessageView.swift in Sources */,
+				8DEDA864291BD3A200520EC8 /* Surgery.swift in Sources */,
 				8DB3C6F128F6E1FC00CADE2F /* VisionClassificationHandler.swift in Sources */,
 				D1C0F6A528F416DC008373DD /* FrontPageView.swift in Sources */,
 			);
@@ -450,26 +502,28 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sushruta/Preview Content\"";
 				DEVELOPMENT_TEAM = P3M366SWW5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) uses camera";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Sushruta uses camera";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Hsiangan.Sushruta;
+				PRODUCT_BUNDLE_IDENTIFIER = Dodofk.Sushruta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -487,19 +541,19 @@
 				DEVELOPMENT_TEAM = P3M366SWW5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) uses camera";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Sushruta uses camera";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Hsiangan.Sushruta;
+				PRODUCT_BUNDLE_IDENTIFIER = dodofk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

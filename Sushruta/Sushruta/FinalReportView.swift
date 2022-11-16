@@ -150,7 +150,7 @@ struct FinalReportView: View {
                             Spacer()
                         }
                         HStack {
-                            record.path().stroke()
+                            record.path(tool: instruments[selectedIndex].name).stroke()
                         }
                         .offset(y:-10)
                             
@@ -226,7 +226,7 @@ struct FinalReportView: View {
                                 for index in 0..<(single_tool.count){
                                     if (single_tool[index]){
                                         print(index)
-                                        toolItems.append(GanttChartViewItem(label: "New", row: idx,
+                                        toolItems.append(GanttChartViewItem(row: idx,
                                                                             start: date(index),
                                                                             finish: date(index + 1)))
                                     }
