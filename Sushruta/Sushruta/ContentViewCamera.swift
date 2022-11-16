@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import PhotosUI
+import GanttisTouch
 
 
 struct ContentViewCamera: View {
@@ -15,10 +15,24 @@ struct ContentViewCamera: View {
     @State var showPhaseDetail = false
     @State var showFinalReport = false
     @State var showHistoryMessage = false
-    @State var finish = true
-    @State private var selectedItem: PhotosPickerItem?
+    @State var finish = false
     @StateObject private var model = VisionObjectClassificationFrameHandler()
-
+    @State var dependencies = [GanttChartViewDependency]()
+    @State var rowHeaders: [String] = [
+        "grasper",
+        "hook",
+        "scissors",
+        "clipper",
+        "irrigator",
+        "monitor",
+    ]
+    @State var schedule = Schedule.continuous
+//    @State var theme = Theme.jewel
+    @State var theme = Theme.standard
+    
+    @State var lastChange = "none"
+    @State var dateToAddTo = 2
+    @State var finishedTime: Date = Date()
     
     var body: some View {
 
@@ -30,21 +44,21 @@ struct ContentViewCamera: View {
             Divider()
                 .padding(.top,10)
 
-
-            
-
             HStack{
-                
-        
                 // camera
                 VStack{
                     
                     // video information
                     HStack{
-                        Text("48033C-20220909")
+                        Text(model.surgeryRecord.surgeryUUid)
                             .font(.system(size: 24))
                         Spacer()
-                        Text("Processing Time: 21mins58secs")
+                        if finish {
+                            Text("Processing Time: \(finishedTime.timeIntervalSince(model.surgeryRecord.startTime))")
+                        }
+                        else{
+                            Text("Processing Time: \(Date().timeIntervalSince(model.surgeryRecord.startTime))")
+                        }
                     }
                     .frame(width: 500)
                     .offset(y: /*@START_MENU_TOKEN@*/14.0/*@END_MENU_TOKEN@*/)
@@ -64,9 +78,11 @@ struct ContentViewCamera: View {
                      // Start and Pause Button
                     Button(action: {
                         isPlaying.toggle()
-                        if isPlaying {
+                        if isPlaying && !finish{
                             model.startRunning()
                         } else {
+                            finish = true
+                            finishedTime = Date()
                             model.endRunning()
                         }
                     }) {
@@ -123,8 +139,6 @@ struct ContentViewCamera: View {
                             VStack {
                                 Text("Classification: ")
                                 Text(model.label)
-                                Text("Detection: ")
-                                Text(model.detectionlabel)
                             }
                             Spacer()
                             
@@ -149,7 +163,7 @@ struct ContentViewCamera: View {
             
                         if finish {
                             NavigationLink{
-                                FinalReportView()
+                                FinalReportView(record: model.surgeryRecord )
                             } label:{
                                 Text("Final Report")
                                     .padding(.horizontal, 15.0)
@@ -188,48 +202,74 @@ struct ContentViewCamera: View {
                 
                 // gannt graph
                 VStack{
-                    
                     HStack {
-                        Text("Gantt Graph")
+                        Text("Gantt Chart")
                             .font(.headline)
-                            .padding(0.0)
-                            
                         Spacer()
                     }
-                    HStack {
-                        Image("ganntsample")
-                            .resizable()
-//                            .frame(width: 550, height: 300)
-                            .cornerRadius(10.0)
-                        Spacer()
-                    }
-                    .offset(y:-10)
-                        
+                    GanttChartView(
+                        items: $model.toolItems,
+                        dependencies: $dependencies,
+                        schedule: schedule,
+                        headerRows: [
+                            GanttChartHeaderRow(TimeSelector(.days))
+                                    ],
+                        rowHeight: 50,
+                        hourWidth: 21600,
+
+                        scrollableTimeline: TimeRange(from: Time.current.dayStart,
+                                                      to: Time.current.adding(hours: 20)),
+
+                        desiredScrollableRowCount: 6,
+                        rowHeaders: rowHeaders,
+                        rowHeadersWidth: 100,
+                        theme: theme,
+                        onItemAdded: { item in
+                            lastChange = "\(item.label ?? "item") added"
+                        },
+                        onItemRemoved: { _ in
+                            lastChange = "item removed"
+                        },
+                        onTimeChanged: { item, _ in
+                            lastChange = "time updated for \(item.label ?? "item")"
+                        },
+                        onCompletionChanged: { item, _ in
+                            lastChange = "completion updated for \(item.label ?? "item")"
+                        },
+                        onRowChanged: { item, _ in
+                            lastChange = "row updated for \(item.label ?? "item")"
+                        }
+                    )
                 }
-                Spacer()
                 // instrument displacement ratio
                 VStack{
                     HStack {
-                        Text("Instrument Displacemetn Ratio")
+                        Text("Hook movement tracking")
                             .font(.headline)
                         Spacer()
                     }
-                    HStack {
-                        Image("instrumentdisplacesample")
-                            .resizable()
-//                            .frame(width: 550, height: 300)
-                            .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
-                        Spacer()
+                    HStack(alignment: .top) {
+                        GeometryReader{ geometric in
+                            model.surgeryRecord.path().stroke().padding(.trailing)
+                        }
                     }
                     .offset(y:-10)
                         
                 }
                 
             }
-            .padding(5.0)
-            .padding(.bottom, 5.0)
         }
     }
+    func removeAllDependencies() {
+        dependencies.removeAll()
+    }
+    func changeTheme() {
+        theme = theme == .standard ? .jewel : .standard
+    }
+}
+
+func date(_ second: Int) -> Time {
+    return Time().dayStart.adding(seconds: Double(second))
 }
 
 struct ContentViewCamera_Previews: PreviewProvider {
@@ -237,28 +277,3 @@ struct ContentViewCamera_Previews: PreviewProvider {
         ContentViewCamera()
     }
 }
-
-
-
-
-
-//back-up
-
-//struct DetailView: View{
-//
-//    @Environment(\.presentationMode) var presentationMode
-//
-//    var body: some View{
-//
-//        NavigationView{
-//
-//            Text("This is the detail for this phase.")
-//                .navigationBarItems(trailing: Button(action: {
-//                    self.presentationMode.wrappedValue.dismiss()
-//                }, label: {
-//                    Image(systemName: "chevron.down.circle.fill")
-//                        .foregroundColor(.accentColor)
-//                }))
-//        }
-//    }
-//}

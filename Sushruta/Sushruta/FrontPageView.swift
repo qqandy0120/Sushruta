@@ -55,7 +55,7 @@ struct FrontPageView: View {
                 List {
                     ForEach(1..<5) { index in
                         NavigationLink{
-                            FinalReportView()
+//                            FinalReportView()
                         } label: {
                             HStack {
                                 Image("history-data-photo-\(index)")

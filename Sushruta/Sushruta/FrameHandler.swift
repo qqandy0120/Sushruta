@@ -7,12 +7,16 @@
 
 import AVFoundation
 import CoreImage
+import GanttisTouch
 
 class FrameHandler : NSObject, ObservableObject {
     @Published var frame: CGImage?
     @Published var label = ""
-    @Published var bbox: CGRect?
+    @Published var bbox: [(CGRect, String)] = []
     @Published var detectionlabel = ""
+    @Published var toolItems = [GanttChartViewItem]()
+
+    
     
     var bufferSize: CGSize = .zero
     
@@ -26,7 +30,6 @@ class FrameHandler : NSObject, ObservableObject {
         super.init()
         checkPermission()
         self.setupAVCapture()
-        print("hello world")
     }
     
     func checkPermission(){

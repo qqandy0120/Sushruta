@@ -37,8 +37,6 @@ struct ContentViewVideo: View {
             
 
             HStack{
-                
-                
                 // camera
                 VStack{
                     if let player{
@@ -198,18 +196,18 @@ struct ContentViewVideo: View {
                         
                         
                         if finish {
-                            NavigationLink{
-                                FinalReportView()
-                            } label:{
-                                Text("Final Report")
-                                    .padding(.horizontal, 15.0)
-                                    .padding(.vertical,10)
-                                    .foregroundColor(.white)
-                                    .background(Color("AccentColor"))
-                                    .cornerRadius(8)
+//                            NavigationLink{
+//                                FinalReportView()
+//                            } label:{
+                            Text("Final Report")
+                                .padding(.horizontal, 15.0)
+                                .padding(.vertical,10)
+                                .foregroundColor(.white)
+                                .background(Color("AccentColor"))
+                                .cornerRadius(8)
                                 
                                 
-                            }
+//                            }
                         } else{
                             Text("Final Report")
                                 .padding(.horizontal, 15.0)

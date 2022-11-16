@@ -6,15 +6,57 @@
 //
 
 import SwiftUI
+import GanttisTouch
+
+struct Instrument {
+    var name: String
+    var MovementImg: String
+}
 
 struct FinalReportView: View {
+    @State var record: SurgeryRecord
+    @State var toolItems = [GanttChartViewItem]()
+    @State var dependencies = [GanttChartViewDependency]()
+    @State var rowHeaders: [String] = [
+        "grasper",
+        "hook",
+        "scissors",
+        "clipper",
+        "irrigator",
+        "monitor",
+    ]
+    @State var schedule = Schedule.continuous
+    @State var lastChange = "none"
+    @State var dateToAddTo = 2
+    @ObservedObject var resetmodel = ResetModel()
+
+    private var formatter = DateFormatter()
+    private var timeFormatter = DateFormatter()
     
-    
-    struct Instrument {
-        var name: String
-        var MovementImg: String
+    public init(record: SurgeryRecord){
+        self.record = record
+        formatter.dateFormat = "yyyy/MM/dd"
+        timeFormatter.dateFormat = "HH:mm:ss"
     }
     
+    func toolIndexMap(message: String) -> Int{
+            switch message{
+            case "grasper":
+                return 0
+            case "hook":
+                return 1
+            case "scissors":
+                return 2
+            case "desktop computer,":
+                return 3
+            case "mouse, computer mouse,":
+                return 4
+            case "monitor,":
+                return 5
+            default:
+                return -1
+            }
+        }
     
     @State var imgHeight = 300.0
     @State var imgWidth = 550.0
@@ -26,7 +68,7 @@ struct FinalReportView: View {
         Instrument(name: "Clipper", MovementImg: "grasper"),
         Instrument(name: "Irrigator", MovementImg: "scissor"),
     ]
-        @State private var selectedIndex = 0
+    @State private var selectedIndex = 0
     
     
     var body: some View {
@@ -60,7 +102,9 @@ struct FinalReportView: View {
                             Divider()
                             Text("Benson Starward")
                             Divider()
-                            Text("2022/02/08")
+
+                            
+                            Text(formatter.string(from: record.startTime))
                             Divider()
 
                         }  // VStasck end
@@ -80,11 +124,11 @@ struct FinalReportView: View {
 
                         }  // VStack end
                         VStack(alignment: .trailing){
-                            Text("07:21:01")
+                            Text(timeFormatter.string(from: record.startTime))
                             Divider()
-                            Text("13:58:59")
+                            Text(timeFormatter.string(from: record.endTime ))
                             Divider()
-                            Text("6 hours 37 mins 58 secs")
+                            Text("\(record.endTime.timeIntervalSince(record.startTime))")
                             Divider()
 
                         }  // VStasck end
@@ -106,11 +150,7 @@ struct FinalReportView: View {
                             Spacer()
                         }
                         HStack {
-                            Image("\(instruments[selectedIndex].MovementImg)")
-                                .resizable()
-                            //                                .frame(width: imgWidth, height: imgHeight)
-                                .cornerRadius(10.0)
-                            Spacer()
+                            record.path().stroke()
                         }
                         .offset(y:-10)
                             
@@ -144,13 +184,58 @@ struct FinalReportView: View {
                             Spacer()
                         }
                         HStack {
-                            Image("ganntsample")
-                                .resizable()
-//                                .frame(width: imgWidth, height: imgHeight)
-                                .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
-                            Spacer()
+                            GanttChartView(
+                                items: $toolItems,
+                                dependencies: $dependencies,
+                                schedule: schedule,
+                                headerRows: [
+                                    GanttChartHeaderRow(TimeSelector(.days))
+                                            ],
+                                rowHeight: 50,
+                                hourWidth: 21600,
+
+                                scrollableTimeline: TimeRange(from: Time.current.dayStart,
+                                                              to: Time.current.adding(hours: 20)),
+
+                                desiredScrollableRowCount: 6,
+                                rowHeaders: rowHeaders,
+                                rowHeadersWidth: 100,
+                                onItemAdded: { item in
+                                    lastChange = "\(item.label ?? "item") added"
+                                },
+                                onItemRemoved: { _ in
+                                    lastChange = "item removed"
+                                },
+                                onTimeChanged: { item, _ in
+                                    lastChange = "time updated for \(item.label ?? "item")"
+                                },
+                                onCompletionChanged: { item, _ in
+                                    lastChange = "completion updated for \(item.label ?? "item")"
+                                },
+                                onRowChanged: { item, _ in
+                                    lastChange = "row updated for \(item.label ?? "item")"
+                                }
+                            )
+
                         }
-                        .offset(y:-10)
+                        .onAppear() {
+                            print("Hello world")
+                            for key in record.toolPresentRecord.keys{
+                                let idx = toolIndexMap(message: key)
+                                let single_tool: [Bool] = record.toolPresentRecord[key] ?? []
+                                for index in 0..<(single_tool.count){
+                                    if (single_tool[index]){
+                                        print(index)
+                                        toolItems.append(GanttChartViewItem(label: "New", row: idx,
+                                                                            start: date(index),
+                                                                            finish: date(index + 1)))
+                                    }
+                                }
+                            }
+                            print(toolItems.count)
+                            resetmodel.reloadView()
+                        }
+//                        .offset(y:-10)
                         
                     }
                     
@@ -192,8 +277,15 @@ struct FinalReportView: View {
     }
 }
 
-struct FinalReportView_Previews: PreviewProvider {
-    static var previews: some View {
-        FinalReportView()
+
+class ResetModel: ObservableObject {
+    func reloadView(){
+        objectWillChange.send()
     }
 }
+
+//struct FinalReportView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FinalReportView()
+//    }
+//}
